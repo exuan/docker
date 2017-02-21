@@ -8,8 +8,8 @@ rm -f /lib/systemd/system/local-fs.target.wants/*; \
 rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
 rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
 rm -f /lib/systemd/system/basic.target.wants/*;\
-rm -f /lib/systemd/system/anaconda.target.wants/*;
-yum update; \
+rm -f /lib/systemd/system/anaconda.target.wants/*; \
+yum -y update; \
 rpm –import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org; \
 yum install -y http://www.elrepo.org/elrepo-release-7.0-9.el7.elrepo.noarch.rpm; \
 yum –enablerepo=elrepo-kernel install -y kernel-ml; \
@@ -19,5 +19,5 @@ yum clean all
 
 EXPOSE 6379 2000 3306 8000 80
 
-VOLUME ["/data/website", "/data/workspace", "/data/gospace"]
+VOLUME ["/sys/fs/cgroup", "/data/website", "/data/workspace", "/data/gospace"]
 CMD ["/usr/sbin/init"]
